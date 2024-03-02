@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+Change password
+
+{% endblock %}
+
+{% block main %}
+<div class="form-editprofile">
+<div>
+    <form method="POST" action="/changepassword" class="form">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required placeholder="Username">
+
+        </div>
+           <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" required placeholder="Email">
+        </div>
+
+           <div class="form-group">
+            <label for="newpass">New password</label>
+            <input type="password" id="newpass" name="newpass" required placeholder="New password">
+        </div>
+           <div class="form-group">
+            <label for="confirmpass">Confirm password</label>
+            <input type="password" id="confirmpass" name="confirmpass" required placeholder="Confirm password">
+        </div>
+        <input type="submit" value="Submit">
+
+    </form>
+</div>
+</div>
+
+{% endblock %}

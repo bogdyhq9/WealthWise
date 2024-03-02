@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    HomePage
+{% endblock %}
+
+{% block main %}
+    <tbody>
+    {% for i in range(len) %}
+        <tr>
+            <td>
+                <div class="container1">
+                    <div class="post-container">
+                        <div class="post-title">{{ posts[i].title }}</div>
+                        <div class="post-info">Posted by {{ posts[i].username }} on {{ dates[i] }} | Category: {{ posts[i].category }}</div>
+                        <div class="post-content">
+                            {{ posts[i].content }}
+                        </div>
+                        <div class="likes me-3">Likes: {{ posts[i].no_likes }}</div>
+                        <hr class="my-3">
+                         <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                {%   if posts[i].id in likes %}
+                                <label class="label"> Liked</label>
+                                {% else %}
+                                 <form action="/like" method="POST">
+                                     <input type="hidden" name="post_id" value="{{ posts[i].id }}">
+                                     <button type="submit" class="btn btn-primary">Like</button>
+                                 </form>
+                                {% endif %}
+                            </div>
+                            <div>
+                               <form action="/comment" method="GET">
+                                    <input type="hidden" name="post_id" value="{{ posts[i].id }}">
+                                    <button type="submit" class="btn btn-secondary">Comment</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+Change password
+
+{% endblock %}
+
+{% block main %}
+    <div class="container1">
+    <div class="post-container">
+    <div class="profile">
+        <label>Username: {{ user.username }}</label>
+    </div>
+    <div class="profile"> <label>Real name: {{ user.realname }}</label></div>
+        {% if user.description=="" %}
+        <div class="profile"> <label>Description: </label><p> No description </p></div>
+        {% else %}
+        <div class="profile"> <p>{{ user.description }}</p></div>
+        {% endif %}
+    </div>
+    <div>
+            <form action="/editprofile" method="GET">
+                <button type="submit" class="btn btn-secondary">Edit profile</button>
+            </form>
+    </div>
+    </div>
+    <tbody>
+    {% for i in range(len) %}
+        <tr>
+            <td>
+                <div class="container1">
+                    <div class="post-container">
+                        <div class="post-title">{{ posts[i].title }}</div>
+                        <div class="post-info">Posted by {{ posts[i].username }} on {{ dates[i] }} | Category: {{ posts[i].category }}</div>
+                        <div class="post-content">
+                            {{ posts[i].content }}
+                        </div>
+                        <div class="likes me-3">Likes: {{ posts[i].no_likes }}</div>
+                    </div>
+                     <div>
+                    <form action="/deletepost" method="POST">
+                        <input type="hidden"  name="post_id" value="{{ posts[i].id }}">
+                        <button type="submit" class="btn btn-danger">Delete post</button>
+                    </form>
+                </div>
+                </div>
+
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+
+{% endblock %}

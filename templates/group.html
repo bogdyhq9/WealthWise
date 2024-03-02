@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+Groups
+
+{% endblock %}
+
+{% block main %}
+
+<div class="form-editprofile">
+    <div class="form-container">
+        <form action="/creategroup" method="GET" class="form">
+           <button type="submit" class="btn btn-primary"> Create group</button>
+        </form>
+    </div>
+</div>
+
+<tbody>
+{% for i in range(len) %}
+<tr>
+    <td>
+        <div class="container1">
+            <div class="post-container">
+                <div class="group-title" >Name: {{  groups[i].name }}</div>
+                <div class="group-info">Members: {{ groups[i].number_of_members }} </div>
+            </div>
+            <div>
+                {% if groups[i].id in members %}
+                <form action="/leavegroup" method="POST">
+                    <input type="hidden"  name="group_id" value="{{ groups[i].id }}">
+                    <button type="submit" class="btn btn-danger">Leave group</button>
+                </form>
+                {% else %}
+                <form action="/group" method="POST">
+                    <input type="hidden"  name="group_id" value="{{ groups[i].id }}">
+                    <button type="submit" class="btn btn-success">Enter group</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+{% endblock %}

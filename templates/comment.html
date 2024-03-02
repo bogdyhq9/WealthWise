@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Comments
+{% endblock %}
+
+{% block main %}
+                   <div class="container1">
+                    <div class="post-container">
+                        <div class="post-title">{{ post.title }}</div>
+                        <div class="post-info">Posted by {{ post.username }} on {{ date }} | Category: {{ post.category }}</div>
+                        <div class="post-content">
+                            {{ post.content }}
+                        </div>
+                        <div class="likes me-3">Likes: {{ post.no_likes }}</div>
+                    </div>
+                   </div>
+    {% for i in range(len) %}
+    <div class="container1">
+        <div class="post-container">
+            <div class="post-info">Posted by {{  users[i]  }} on {{ dates[i] }}</div>
+            <div class="post-content">{{ results[i].content }}</div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="container1">
+        <div class="post-container">
+            <form action="/comment" method="POST">
+                <div class="mb-3">
+                    <textarea class="form-control" id="comment_content" name="content" rows="3" required></textarea>
+                </div>
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button type="submit" class="btn btn-primary">Comment</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
